@@ -12,7 +12,7 @@ use log::{error, info};
 
 #[tokio::main]
 async fn main() {
-    let addr = "127.0.0.1:18910".to_string();
+    let addr = "0.0.0.0:18910".to_string();
     let listener = TcpListener::bind(&addr).await.unwrap();
     println!("WebSocket server is running on ws://{}", addr);
 
