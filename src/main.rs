@@ -35,7 +35,7 @@ async fn main() -> std::io::Result<()> {
             .service(web::resource("/addresses/{addr}/balance").route(web::get().to(get_balance_by_address)))
             .service(web::resource("/info/halving").route(web::get().to(get_halving)))
     })
-        .bind(("127.0.0.1", 3001))?
+        .bind(("0.0.0.0", 3001))?
         .run()
         .await
 }
