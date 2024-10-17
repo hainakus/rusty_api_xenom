@@ -1,5 +1,5 @@
 
-
+use actix_cors::Cors;
 use std::collections::HashMap;
 use std::hash::Hash;
 use actix_web::{web, App, HttpServer, Responder, HttpResponse};
@@ -25,6 +25,13 @@ struct BalanceResponse {
 async fn main() -> std::io::Result<()> {
     HttpServer::new(|| {
         App::new()
+            .wrap(
+                Cors::default()
+                    .allow_any_origin()
+                    .allow_any_method()
+                    .allow_any_header()
+                    .max_age(3600)
+            )
             .service(web::resource("/blocks/{hash}").route(web::get().to(get_block)))
             .service(web::resource("/info/blockreward").route(web::get().to(get_block_reward)))
             .service(web::resource("/transactions/{hash}").route(web::get().to(get_transaction)))
